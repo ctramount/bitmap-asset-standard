@@ -62,7 +62,7 @@ An optional Add-ons root inscription lets the creator publish add-ons, such as a
 - [Part C. Informative](#part-c-informative)
 - [11\. Platform guidance](#11-platform-guidance)
     - [11.1 Minting and marketplace platforms](#111-minting-and-marketplace-platforms)
-    - [11.2 Example: Bitmap City](#112-example-bitmap-city)
+    - [11.2 Example: Bitmap Place](#112-example-bitmap-place)
     - [11.3 Games and experiences](#113-games-and-experiences)
 - [12\. For app developers: supporting the standard](#12-for-app-developers-supporting-the-standard)
     - [12.1 What an app reads](#121-what-an-app-reads)
@@ -663,7 +663,7 @@ An add-on is a child of a set, not directly of the root. Only the set's holder c
 
 - Authority: an add-on is official only because it descends, through its set, from the Add-ons root named in the master inscription's `addonsRoot`. Files published anywhere else, including children of the art file or the master inscription, are not add-ons of the collection, whatever they declare.
 - Data, not code: creators SHOULD make add-ons data files, not code: 3D (for example GLB animation clips or models), images or textures, audio, or data such as JSON. Readers MUST never execute code from an add-on, whatever its content type. Add-on code would come from whoever holds a set, not from the platform, so running it could let a hacked or malicious set drain a user's wallet, steal their data or hijack the page.
-- No format ban: the standard does not ban any format, because a ban could not be enforced: whoever holds a set can inscribe anything under it. Platforms MAY set stricter rules in their own creator tools ([11.1 Minting and marketplace platforms](#111-minting-and-marketplace-platforms), [11.2 Example: Bitmap City](#112-example-bitmap-city)).
+- No format ban: the standard does not ban any format, because a ban could not be enforced: whoever holds a set can inscribe anything under it. Platforms MAY set stricter rules in their own creator tools ([11.1 Minting and marketplace platforms](#111-minting-and-marketplace-platforms), [11.2 Example: Bitmap Place](#112-example-bitmap-place)).
 - Readers SHOULD apply the same size limits and fail-closed parsing to add-ons that they use for art files ([9 Security and reader considerations](#9-security-and-reader-considerations)).
 
 Examples of add-ons (informative):
@@ -939,22 +939,22 @@ Platforms set their own policies and decide which art file types and profiles th
 
 **Fees and payment.** Fees, prices, payouts and payment handling are platform-level terms, outside the standard. Nothing about them goes on chain.
 
-### 11.2 Example: Bitmap City
+### 11.2 Example: Bitmap Place
 
-This is how one platform, Bitmap City, makes judgment calls on the guidance above. These are Bitmap City's platform choices, not rules of the standard.
+This is how one platform, Bitmap Place, makes judgment calls on the guidance above. These are Bitmap Place's platform choices, not rules of the standard.
 
-![Bitmap City's choices: how a collection fits together](figures/bitmap-city-structure.png)
+![Bitmap Place's choices: how a collection fits together](figures/bitmap-place-structure.png)
 
-*Figure 2. Bitmap City's choices: how a collection fits together. Same structure and legend as Figure 1 ([5 Inscriptions and references](#5-inscriptions-and-references)), with Bitmap City's own labels: Bitmap City holds the collection inscription and burns it when the mint closes; the master inscription is burned right after it confirms, while the art file and the preview are held by the creator; Bitmap City's add-on creator tools will accept only the listed formats; and Bitmap City's add-on creator tools are still coming.*
+*Figure 2. Bitmap Place's choices: how a collection fits together. Same structure and legend as Figure 1 ([5 Inscriptions and references](#5-inscriptions-and-references)), with Bitmap Place's own labels: Bitmap Place holds the collection inscription and burns it when the mint closes; the master inscription is burned right after it confirms, while the art file and the preview are held by the creator; Bitmap Place's add-on creator tools will accept only the listed formats; and Bitmap Place's add-on creator tools are still coming.*
 
-- Mints: every mint child has the two parents of a Bitmap-holder collection, its `N.bitmap` and the collection inscription. The master inscription is a child of the collection inscription and is burned right after it confirms. Bitmap City holds the collection inscription during the mint and burns it at close.
-- Co-signing: Bitmap City's co-signer applies the master inscription's mint guidance. For now, Bitmap City offers one mint per Bitmap: every Bitmap City collection sets `perBitmap` to 1, and its co-signer never signs a second mint of the same collection on the same Bitmap. Other platforms may offer more, using `perBitmap` as the standard allows. It refuses to co-sign a mint beyond `supplyCap` or `perBitmap`, on a Bitmap outside the height range or the `eligible` filter, or with the wrong delegate or metadata. This is Bitmap City's policy when it co-signs; it never changes who is a member ([6.1 Membership: on chain is law](#61-membership-on-chain-is-law)).
+- Mints: every mint child has the two parents of a Bitmap-holder collection, its `N.bitmap` and the collection inscription. The master inscription is a child of the collection inscription and is burned right after it confirms. Bitmap Place holds the collection inscription during the mint and burns it at close.
+- Co-signing: Bitmap Place's co-signer applies the master inscription's mint guidance. For now, Bitmap Place offers one mint per Bitmap: every Bitmap Place collection sets `perBitmap` to 1, and its co-signer never signs a second mint of the same collection on the same Bitmap. Other platforms may offer more, using `perBitmap` as the standard allows. It refuses to co-sign a mint beyond `supplyCap` or `perBitmap`, on a Bitmap outside the height range or the `eligible` filter, or with the wrong delegate or metadata. This is Bitmap Place's policy when it co-signs; it never changes who is a member ([6.1 Membership: on chain is law](#61-membership-on-chain-is-law)).
 - Art file: the Create flow accepts an image, a 3D model or HTML (PNG, WebP, GIF, SVG, AVIF, GLB, glTF JSON or HTML). HTML is allowed for the art file but refused for add-ons, because the art file is fixed and reviewed at launch, while add-ons can arrive later from a set holder.
-- Art file and preview custody: Bitmap City never burns the art file or the preview. The launch page says "Art file held by the creator" (and "Preview held by the creator"), whether the launch uploaded them or the creator pointed to inscriptions they already own.
-- Bitmap City inscribes uploaded art and previews straight to the creator's wallet, so they never sit on a platform key.
-- Add-ons: the Add-ons root goes to the creator's wallet (cold storage recommended), and each set goes to a working wallet and is burned when done. Bitmap City's add-on creator tools, when they ship, will accept GLB, glTF, PNG, WebP, JPEG, audio and JSON, and will refuse HTML, SVG with script, and JS (SVG is named because an SVG file can carry script). This is stricter than the standard, which recommends data files and bans no format ([7.3 Add-ons](#73-add-ons)).
-- Add-on scope: Bitmap City's reader supports all three scope forms ("collection", Bitmap height lists and filters); its add-on creator tools are coming.
-- Showing add-ons: Bitmap City's app may load add-ons as an optional, app-side layer; the art never changes. Every inscription is identified by its inscription ID, never by its sat.
+- Art file and preview custody: Bitmap Place never burns the art file or the preview. The launch page says "Art file held by the creator" (and "Preview held by the creator"), whether the launch uploaded them or the creator pointed to inscriptions they already own.
+- Bitmap Place inscribes uploaded art and previews straight to the creator's wallet, so they never sit on a platform key.
+- Add-ons: the Add-ons root goes to the creator's wallet (cold storage recommended), and each set goes to a working wallet and is burned when done. Bitmap Place's add-on creator tools, when they ship, will accept GLB, glTF, PNG, WebP, JPEG, audio and JSON, and will refuse HTML, SVG with script, and JS (SVG is named because an SVG file can carry script). This is stricter than the standard, which recommends data files and bans no format ([7.3 Add-ons](#73-add-ons)).
+- Add-on scope: Bitmap Place's reader supports all three scope forms ("collection", Bitmap height lists and filters); its add-on creator tools are coming.
+- Showing add-ons: Bitmap Place's app may load add-ons as an optional, app-side layer; the art never changes. Every inscription is identified by its inscription ID, never by its sat.
 
 ### 11.3 Games and experiences
 
